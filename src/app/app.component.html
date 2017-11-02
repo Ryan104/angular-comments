@@ -14,8 +14,8 @@
 	<ul class="list-group list-group-flush">
     <li class="comment list-group-item" *ngFor="let comment of comments">
     	<div class="commentEditForm" *ngIf="comment.edit; else commentDetail">
-			<input [(ngModel)]="comment.comment" [placeholder]="comment.comment" />
-			<input [(ngModel)]="comment.author" [placeholder]="comment.author" />
+			<input [(ngModel)]="comment.comment" />
+			<input [(ngModel)]="comment.author" />
 			<button class="btn btn-success" (click)="saveEdit(comment)">SAVE</button>
     	</div>
     	<ng-template #commentDetail>

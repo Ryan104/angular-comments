@@ -10,41 +10,37 @@ import { CommentService } from './comment/comment.service';
 })
 export class AppComponent implements OnInit {
   formSubmit : boolean; /*disable submit if comment fields empty*/
-  comments = [];
-  // comments = [
-  //     {comment: 'first comment!', author: 'Unknown', edit: false},
-  //     {comment: 'nice work!', author: 'Unknown', edit: false},
-  //     {comment: 'I would also like to congratulate you!', author: 'Unknown', edit: false}
-  // ];
+  comments = this.commentService.getComments();
 
   constructor(private commentService : CommentService){}
 
   ngOnInit(){
   	this.formSubmit = false;
-  	this.commentService.onCommentUpdated(comments => (this.comments = comments));
+  	this.commentService.onCommentUpdated(comments => {
+  		this.comments = comments;
+  	});
   }
 
   addComment(commentForm : NgForm){
-  	this.comments.push({comment: commentForm.value.comment, author: commentForm.value.author, edit: false});
+  	this.commentService.addComment({
+  		comment: commentForm.value.comment,
+  		author: commentForm.value.author,
+  		edit: false
+  	});
   }
 
   deleteComment(comment){
-  	this.comments.splice(this.comments.indexOf(comment),1)
+  	this.commentService.deleteComment(comment);
   }
 
   enableEdit(comment){
-  	this.comments.forEach(c => {
-  		if (c == comment) {
-  			c.edit = true;
-  		}
-  	})
+  	this.comments.forEach(c => (c == comment) ? c.edit = true : null);
+  		
+  		
+  	
   }
 
   saveEdit(comment){
-  	this.comments.forEach(c => {
-  		if (c == comment) {
-  			c.edit = false;
-  		}
-  	})
+  	this.commentService.editComment(comment);
   }
 }

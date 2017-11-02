@@ -10,7 +10,6 @@ export class CommentService {
   ];
   private commentSubject = new Subject();
 
-
   constructor() { }
 
   private updateSubject(){
@@ -27,23 +26,20 @@ export class CommentService {
   }
 
   deleteComment(comment){
-  	this.comments.splice(this.comments.indexOf(comment),1)
+  	this.comments.splice(this.comments.indexOf(comment),1);
+  	this.updateSubject();
   }
 
   onCommentUpdated(callback){
   	this.commentSubject.asObservable().subscribe(callback);
   }
 
+  editComment(comment){
+  	this.comments.forEach(c => {
+  		if (c == comment) {
+  			c.edit = false;
+  			this.updateSubject();
+  		}
+  	})
+  }
 }
-
-
-/*
-Your comment service should have the following methods: 
-  updateSubject(), getComments(), addComment(), deleteComment(), and onCommentUpdated(). 
-  The methods setComments() and editComment() are nice-to-haves, but not necessary.
-
-Your comment service should have the following variables: 
-  comments (array) and subject (Observable).
-
-Make sure your code is working as before, but using the Comment Service.
-*/
