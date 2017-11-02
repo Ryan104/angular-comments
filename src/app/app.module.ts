@@ -4,11 +4,15 @@ import { FormsModule } from '@angular/forms'
 
 import { AppComponent } from './app.component';
 
-import { CommentService } from './comment/comment.service'
+import { CommentService } from './comment/comment.service';
+import { CommentFormComponent } from './comment-form/comment-form.component';
+import { CommentListComponent } from './comment-list/comment-list.component'
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    CommentFormComponent,
+    CommentListComponent
   ],
   imports: [
     BrowserModule,

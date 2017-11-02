@@ -1,0 +1,11 @@
+<form #commentForm="ngForm" (ngSubmit)="addComment(commentForm)">
+	<div class="input-field">
+		<input id="comment" name="comment" type="text" ngModel />
+		<label for="comment">Comment</label>
+	</div>
+	<div class="input-field">
+		<input id="author" name="author" type="text" ngModel />
+		<label for="author">Author</label>
+	</div>
+	<input type="submit" value="ADD COMMENT" class="btn waves-effect waves-light" />
+</form>

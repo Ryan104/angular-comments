@@ -1,34 +1,7 @@
+<nav>
+	<a class="brand-logo">COMMENTS</a>
+</nav>
 <div class="container">
-<h1>Comments</h1>
-<form #commentForm="ngForm" (ngSubmit)="addComment(commentForm)">
-	<input name="comment" type="text" placeholder="comment" ngModel />
-	<input name="author" type="text" placeholder="author" ngModel />
-	<input type="submit" value="ADD COMMENT" [disabled]="formSubmit" />
-</form>
-
-<div class="container">
-<div class="card commentContainer">
-	<div class="card-header">
-		Comments:
-	</div>
-	<ul class="list-group list-group-flush">
-    <li class="comment list-group-item" *ngFor="let comment of comments">
-    	<div class="commentEditForm" *ngIf="comment.edit; else commentDetail">
-			<input [(ngModel)]="comment.comment" />
-			<input [(ngModel)]="comment.author" />
-			<button class="btn btn-success" (click)="saveEdit(comment)">SAVE</button>
-    	</div>
-    	<ng-template #commentDetail>
-    		<p>{{comment.comment}}</p>
-    		<p class="text-muted">{{comment.author}}</p>
-    	</ng-template>
-
-    	<div class="commentBtns">
-    		<button (click)="deleteComment(comment)" class="btn btn-sm btn-danger">X</button>
-    		<button (click)="enableEdit(comment)" class="btn btn-sm btn-info">. . .</button>
-    	</div>
-    </li>
-	</ul>
-</div>
-</div>
+    <app-comment-form></app-comment-form>
+    <app-comment-list></app-comment-list>
 </div>
